@@ -9,7 +9,7 @@ const routes = [
     element: <Layout />,
     children: [
       {
-        path: '/list',
+        path: '/',
         element: <BoardList />
       },
       {

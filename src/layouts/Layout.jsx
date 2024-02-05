@@ -1,8 +1,16 @@
+import { Box, Container } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 
 const Layout = () => {
   return (
-    <Outlet />
+    <>
+      <Container style={{ height: '100%' }}>
+        <Box paddingTop="50px">
+          <Outlet />
+        </Box>
+      </Container>
+      <Box height="150px" bgcolor="#c2c2c2" />
+    </>
   )
 };
 
