@@ -9,7 +9,7 @@ const Layout = () => {
           <Outlet />
         </Box>
       </Container>
-      <Box height="150px" bgcolor="#c2c2c2" />
+      <Box height="100px" bgcolor="#c2c2c2" />
     </>
   )
 };

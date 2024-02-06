@@ -6,7 +6,11 @@ import { useSaveBoardMutation } from "../hooks/useBoard";
 
 const BoardWrite = () => {
   const save = useSaveBoardMutation();
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    subject: '',
+    content: '',
+    password: '',
+  });
 
   const handleChange = (e) => {
     setForm({
@@ -15,8 +19,9 @@ const BoardWrite = () => {
     });
   };
 
-  const handleSubmit = () => {
-    save(form);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    save.mutate(form);
   };
 
   return (
@@ -44,11 +49,11 @@ const BoardWrite = () => {
               onChange={handleChange}
             />
           </Box>
-          <Box marginTop="30px" height="500px">
+          <Box marginTop="30px" height="450px">
             <TextField
               name="content"
               label="내용"
-              rows={20}
+              rows={17}
               multiline
               fullWidth
               value={form.content}
