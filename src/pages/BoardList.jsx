@@ -2,25 +2,15 @@ import { Box, Button } from "@mui/material";
 import Title from "../components/common/Title";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
+import { useFetchBoardListQuery } from "../hooks/useBoard";
 
 const BoardList = () => {
+  const { data: rows } = useFetchBoardListQuery();
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'subject', headerName: '제목', flex: 1 },
     { field: 'author', headerName: '글쓴이', width: 130 },
     { field: 'date', headerName: '작성시간', width: 90},
-  ];
-
-  const rows = [
-    { id: 1, subject: 'Snow', author: 'Jon', date: 35 },
-    { id: 2, subject: 'Lannister', author: 'Cersei', date: 42 },
-    { id: 3, subject: 'Lannister', author: 'Jaime', date: 45 },
-    { id: 4, subject: 'Stark', author: 'Arya', date: 16 },
-    { id: 5, subject: 'Targaryen', author: 'Daenerys', date: null },
-    { id: 6, subject: 'Melisandre', author: null, date: 150 },
-    { id: 7, subject: 'Clifford', author: 'Ferrara', date: 44 },
-    { id: 8, subject: 'Frances', author: 'Rossini', date: 36 },
-    { id: 9, subject: 'Roxie', author: 'Harvey', date: 65 },
   ];
 
   return (

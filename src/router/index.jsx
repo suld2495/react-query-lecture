@@ -13,7 +13,7 @@ const routes = [
         element: <BoardList />
       },
       {
-        path: '/view',
+        path: '/view/:id',
         element: <BoardView />
       },
       {
