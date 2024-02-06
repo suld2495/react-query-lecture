@@ -16,7 +16,7 @@ const getId = (list) => {
   return result; 
 };
 
-const generateRandomDate = () => {
+export const generateRandomDate = () => {
   const startDate = new Date('2020-01-01');
   const endDate = new Date(); // 현재 날짜
   const randomTime = startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime());
@@ -59,41 +59,4 @@ const boardList = [
   return acc; 
 }, []).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-export const handlers = [
-  http.get('/api/board', () => {
-    return HttpResponse.json(boardList);
-  }),
-
-  http.get('/api/board/:id', ({ params: { id } }) => {
-    const board = boardList.find((board) => board.id === id);
-
-    if (!board) {
-      throw new HttpResponse(null, { status: 400 })
-    }
-
-    return HttpResponse.json(board);
-  }),
-
-  http.post('/api/board', async ({ request }) => {
-    const form = await request.json();
-
-    if ([form.password, form.subject, form.content].some(value => !value)) {
-      throw new HttpResponse(null, { status: 400 })
-    }
-
-    boardList.unshift({ ...form, id: getId(boardList), date: formatDate(new Date()) });
-    return HttpResponse.json(boardList[0], { status: 200 });
-  }),
-
-  http.delete('/api/board/:id', ({ params: { id } }) => {
-    const index = boardList.findIndex((board) => board.id === id);
-
-    if (index === -1) {
-      throw new HttpResponse(null, { status: 400 })
-    }
-
-    boardList.splice(index, 1);
-
-    return new HttpResponse(null, { status: 200 });
-  })
-];
+export const handlers = [];
